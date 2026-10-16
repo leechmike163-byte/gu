@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#eee9df">
+  <title>孤鸿 · 江湖志</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <main class="app-shell">
+    <div class="topline"><span>孤鸿 · 江湖志</span><span id="save-indicator">未开始</span></div>
+
+    <section id="start-screen" class="screen start-screen">
+      <div class="start-title">
+        <span class="seal">孤<br>鸿</span>
+        <p class="eyebrow">A WUXIA TEXT ADVENTURE</p>
+        <h1>江湖志</h1>
+        <p class="subtitle">一念入江湖，万般皆由你。</p>
+      </div>
+      <nav class="diamond-menu" aria-label="主菜单">
+        <button class="diamond diamond-top" data-start="new"><span>初入<br>江湖</span></button>
+        <button class="diamond diamond-left" data-start="continue"><span>还顾<br>前尘</span></button>
+        <button class="diamond diamond-right" data-start="quick"><span>快捷<br>通道</span></button>
+        <button class="diamond diamond-bottom" data-start="journal"><span>江湖志</span></button>
+      </nav>
+      <p class="start-note">山河远阔 · 江湖再会</p>
+    </section>
+
+    <section id="story-screen" class="screen story-screen" hidden>
+      <div class="section-heading"><span class="chapter-mark">序</span><div><p class="eyebrow">PROLOGUE</p><h2 id="story-heading">江湖风云</h2></div></div>
+      <article id="story-copy" class="story-copy"></article>
+      <div class="story-controls">
+        <span id="story-progress">01 / 05</span>
+        <div><button id="story-back" class="btn btn-quiet">返回</button><button id="story-next" class="btn">继续</button></div>
+      </div>
+    </section>
+
+    <section id="guide-screen" class="screen guide-screen" hidden>
+      <div class="guide-card">
+        <span class="small-seal">盟</span>
+        <p class="eyebrow">A NOTE FROM THE ALLIANCE</p>
+        <p class="guide-quote" id="guide-copy">“这位少侠，可是来赴盟会的？”</p>
+        <button id="guide-next" class="btn">我知道了</button>
+      </div>
+    </section>
+
+    <section id="identity-screen" class="screen form-screen" hidden>
+      <button class="help-button" data-help="identity" aria-label="昵称编辑说明">?</button>
+      <div class="section-heading"><span class="chapter-mark">名</span><div><p class="eyebrow">YOUR IDENTITY</p><h2>留下你的名姓</h2><p class="muted">江湖之中，姓名与名号皆是行走的凭证。</p></div></div>
+      <form id="identity-form" class="identity-form">
+        <label class="field-row"><span>姓氏</span><input id="surname" maxlength="8" placeholder="例如：沈" required></label>
+        <label class="field-row"><span>名字</span><input id="given-name" maxlength="12" placeholder="例如：知微" required></label>
+        <label class="field-row"><span>昵称</span><input id="nickname" maxlength="20" placeholder="亲近之人如何称呼你" required></label>
+        <label class="field-row"><span>名号</span><input id="title-name" maxlength="20" placeholder="你在江湖上的代称" required></label>
+        <div class="form-footer"><span class="muted">四项均需填写</span><button class="btn" type="submit">确认身份</button></div>
+      </form>
+    </section>
+
+    <section id="persona-screen" class="screen form-screen" hidden>
+      <button class="help-button" data-help="persona" aria-label="人设自定义说明">?</button>
+      <div class="section-heading"><span class="chapter-mark">心</span><div><p class="eyebrow">CHARACTER PROFILE</p><h2>自定义人设</h2><p class="muted">你的来历已定，性情由你书写。</p></div></div>
+      <div class="fixed-identity"><span>身份</span><strong>孤鸿剑弟子</strong><em>固定设定</em></div>
+      <label class="textarea-label" for="persona">人设描述</label>
+      <textarea id="persona" rows="6" maxlength="500" placeholder="写下你的性格、爱好、行事风格……"></textarea>
+      <div class="form-footer"><span class="muted">最多 500 字</span><button id="persona-next" class="btn">确认人设</button></div>
+    </section>
+
+    <section id="difficulty-screen" class="screen form-screen" hidden>
+      <button class="help-button" data-help="difficulty" aria-label="难度说明">?</button>
+      <div class="section-heading"><span class="chapter-mark">试</span><div><p class="eyebrow">CHOOSE YOUR PATH</p><h2>选择江湖难度</h2><p class="muted">不同的选择，将带来不同的试炼。</p></div></div>
+      <div class="difficulty-options">
+        <button class="difficulty-card" data-difficulty="简单"><span class="difficulty-number">壹</span><strong>简单</strong><small>提示更多，失败惩罚较轻</small></button>
+        <button class="difficulty-card selected" data-difficulty="普通"><span class="difficulty-number">贰</span><strong>普通</strong><small>规则标准，兼顾探索与挑战</small></button>
+        <button class="difficulty-card" data-difficulty="困难"><span class="difficulty-number">叁</span><strong>困难</strong><small>提示较少，资源管理更严格</small></button>
+      </div>
+      <div class="form-footer"><span class="muted">可在新游戏中重新选择</span><button id="difficulty-next" class="btn">踏入江湖</button></div>
+    </section>
+
+    <section id="game-screen" class="screen game-screen" hidden>
+      <header class="game-header">
+        <div class="player-mark">孤</div>
+        <div class="player-heading"><p class="eyebrow">YOUR JOURNEY</p><h2 id="player-heading">江湖旅人</h2><span id="player-subtitle">孤鸿剑弟子 · 普通</span></div>
+        <button id="menu-toggle" class="icon-button" aria-label="打开菜单">☰</button>
+      </header>
+      <div class="game-layout">
+        <aside class="status-panel">
+          <p class="panel-title">行走江湖</p>
+          <div class="status-line"><span>气血</span><div class="meter"><i style="width:85%"></i></div><b>85</b></div>
+          <div class="status-line"><span>内力</span><div class="meter qi"><i style="width:65%"></i></div><b>65</b></div>
+          <div class="status-line"><span>阅历</span><b>初入江湖</b></div>
+          <hr>
+          <p class="panel-title">当前目标</p><p class="goal-text">前往正阳殿，参加武林盟会。</p>
+          <button id="open-shortcuts" class="shortcut-open">✣ 快捷功能</button>
+        </aside>
+        <section class="conversation">
+          <div class="scene-label"><span>正阳殿外</span><span>辰时 · 微雨</span></div>
+          <div id="conversation-log" class="conversation-log" aria-live="polite">
+            <article class="message ai-message"><span class="message-tag">旁白</span><p>山雨欲来，昆山之巅云雾翻涌。正阳殿外，各派弟子三三两两聚在廊下。一个青衣侍者向你走来，拱手道：“这位少侠，可是来赴盟会的？”</p></article>
+          </div>
+          <form id="chat-form" class="chat-composer">
+            <textarea id="chat-input" rows="2" maxlength="1200" placeholder="写下你的行动或回应……" required></textarea>
+            <div class="composer-bottom"><span>Enter 发送 · Shift + Enter 换行</span><button class="btn" type="submit">发送 ↗</button></div>
+          </form>
+        </section>
+      </div>
+      <div id="shortcut-panel" class="shortcut-panel" hidden>
+        <div class="panel-heading"><strong>快捷功能</strong><button id="close-shortcuts" class="close-button" aria-label="关闭">×</button></div>
+        <button data-action="查看周围">查看周围</button><button data-action="查看状态">查看状态</button><button data-action="查看任务">查看任务</button><button data-action="查看背包">查看背包</button><button data-action="整理思绪">整理思绪</button>
+      </div>
+      <div id="menu-panel" class="menu-panel" hidden>
+        <button data-menu="profile">人物设定</button><button data-menu="journal">江湖志</button><button data-menu="save">保存进度</button><button data-menu="restart">重新开始</button>
+      </div>
+    </section>
+  </main>
+
+  <div id="modal-backdrop" class="modal-backdrop" hidden>
+    <section class="modal" role="dialog" aria-modal="true" aria-labelledby="modal-title">
+      <button id="modal-close" class="close-button" aria-label="关闭">×</button>
+      <p class="eyebrow">GUIDE</p><h2 id="modal-title">说明</h2><div id="modal-content"></div>
+      <button id="modal-confirm" class="btn">明白了</button>
+    </section>
+  </div>
+  <div id="toast" class="toast" role="status" hidden></div>
+  <script src="./app.js"></script>
+</body>
+</html>
